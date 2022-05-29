@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>521515027650-jobeo4ce78d4vash2t65secvondo98vi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.521515027650-jobeo4ce78d4vash2t65secvondo98vi</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD01jXuBZ_TXtTAg9zvXXQIDRo0ZyeA82U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>521515027650</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>furkanaysavki.e-commerceApp</string>
+	<key>PROJECT_ID</key>
+	<string>e-commerceapp-b5ab2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>e-commerceapp-b5ab2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:521515027650:ios:cd3400f3f72b0868d07f5b</string>
+</dict>
+</plist>
