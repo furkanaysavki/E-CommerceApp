@@ -133,8 +133,8 @@ extension HomeView : UICollectionViewDelegate, UICollectionViewDataSource,UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let food = filteredProducts[indexPath.row]
-        performSegue(withIdentifier: "toDetail", sender: food)
+        let product = filteredProducts[indexPath.row]
+        performSegue(withIdentifier: "toDetail", sender: product)
         
         
     }
