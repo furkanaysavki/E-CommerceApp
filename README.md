@@ -15,5 +15,9 @@ The application lists the data I got from the fakestoreapi using the UrlSession 
 
 
 
-https://user-images.githubusercontent.com/45628483/170868876-1f7aafa8-9da2-4d57-bc94-c4737bcd9456.mov
+
+https://user-images.githubusercontent.com/45628483/172064391-d957f28e-65c3-48ff-82e5-cbf098477753.mov
+
+
+
 
