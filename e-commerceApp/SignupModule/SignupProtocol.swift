@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+
 import Foundation
 
 

@@ -83,7 +83,7 @@ class CartView: UIViewController, UITableViewDataSource, UITableViewDelegate {
               
               
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            
+              
             
              
               

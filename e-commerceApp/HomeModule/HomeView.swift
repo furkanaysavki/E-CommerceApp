@@ -11,10 +11,11 @@ import Kingfisher
 class HomeView: UIViewController {
     
     
+   
+    @IBOutlet weak var pageController: UIPageControl!
+    @IBOutlet weak var slideCollectionView: UICollectionView!
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
    
@@ -22,7 +23,7 @@ class HomeView: UIViewController {
     
     var products : [Products] = []
     var filteredProducts : [Products] = []
-    
+    var slideImage = [UIImage(named: "image1")!, UIImage(named: "image2")!, UIImage(named: "image3")!]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,13 @@ class HomeView: UIViewController {
         searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        slideCollectionView.delegate = self
+        slideCollectionView.dataSource = self
+        
+        
+        pageController.numberOfPages = slideImage.count
+        
         activityIndicator.startAnimating()
        
         HomeRouter.createModule(ref: self)
@@ -68,6 +76,7 @@ extension HomeView : PresenterToViewHomeProtocol {
             
             
         }
+        
     }
         func update(with error: String) {
                 DispatchQueue.main.async {
@@ -99,35 +108,70 @@ extension HomeView : UICollectionViewDelegate, UICollectionViewDataSource,UIColl
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        if collectionView == slideCollectionView {
+            return slideImage.count
+        
+        }
+        
+      
         return filteredProducts.count
+   
+        
         
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        if(collectionView == slideCollectionView) {
+            let cell2 = slideCollectionView.dequeueReusableCell(withReuseIdentifier: "slideCell", for: indexPath) as! SlideViewCell
+            
+            cell2.slideImage.image = slideImage[indexPath.row]
+            
+            cell2.layer.shadowColor = UIColor.lightGray.cgColor
+            cell2.layer.shadowRadius = 5
+            cell2.layer.shadowOpacity = 1
+            cell2.layer.shadowOffset = CGSize(width: 0, height: 0)
+            cell2.layer.masksToBounds = false
+            
+            return cell2
+            
+        } else {
+        
+        
+        
        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! StoreCollectionViewCell
         let product = filteredProducts[indexPath.row]
         
+         
         cell.nameLabel.text = product.title
         cell.priceLabel.text = "₺\(product.price)"
+    
         
         if let url = URL(string: product.image) {
             DispatchQueue.main.async {
                 cell.storeImageView.kf.setImage(with : url)
             }
         }
+        
       
            
                 
         cell.layer.cornerRadius = 17
-        cell.layer.borderWidth = 2.0
-        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.shadowColor = UIColor.lightGray.cgColor
+        cell.layer.shadowRadius = 5
+        cell.layer.shadowOpacity = 1
+        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cell.layer.masksToBounds = false
         
         
+                
+        
+     
         return cell
+       
         
-    
+        }
     
     }
     
@@ -138,8 +182,13 @@ extension HomeView : UICollectionViewDelegate, UICollectionViewDataSource,UIColl
         
         
     }
-    
-}
-
-
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+            
+            if collectionView == slideCollectionView
+            {
+                pageController.currentPage = indexPath.row
+            }
+            
+        }
+    }
 
