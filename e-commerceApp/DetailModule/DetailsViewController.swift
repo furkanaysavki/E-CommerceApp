@@ -12,9 +12,7 @@ class DetailsViewController: UIViewController {
     
     var product : Products?
     var count : Int = 1
-    var myImage = [String]()
-    var myCount = [String]()
-    var myName = [String]()
+    
     
     
     @IBOutlet weak var addButtonClicked: UIButton!
@@ -33,9 +31,9 @@ class DetailsViewController: UIViewController {
         
         
         
-        DispatchQueue.main.async {
-            self.productName.text = self.product?.title
-        }
+        
+        productName.text = product?.title
+        
         
         productDescription.text = product?.Description
         sumLabel.text = "\(product!.price)"
