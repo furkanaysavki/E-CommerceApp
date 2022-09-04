@@ -15,7 +15,7 @@ class CartView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var selectedImage = [String]()
     var selectedCount = [String]()
     var selectedName =  [String]()
-    var sum = 0
+    var sum : Double = 0
   
     
     @IBOutlet weak var myTotalPrice: UILabel!
@@ -26,8 +26,6 @@ class CartView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //tableView.separatorStyle = .none
-        //tableView.showsVerticalScrollIndicator = false
         payButton.layer.cornerRadius = 20
         tableView.delegate = self
         tableView.dataSource = self
@@ -37,20 +35,17 @@ class CartView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
-        let numbers = selectedPrice.map { Int($0)!}
+        newAmount()
+        NotificationCenter.default.addObserver(self, selector: #selector(newAmount), name: NSNotification.Name(rawValue : "newData"), object: nil)
+        
+        }
+    
+    @objc func newAmount(){
+        let numbers = selectedPrice.map { Double($0)!}
         let sum = numbers.reduce(0, +)
         myTotalPrice.text = String(sum)
-        
-        
-        print(selectedPrice)
     }
 
-    
-    
-    
-
-   
-  
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedName.count
@@ -76,21 +71,13 @@ class CartView: UIViewController, UITableViewDataSource, UITableViewDelegate {
           if editingStyle == .delete {
             print("Deleted")
 
-            self.selectedName.remove(at: indexPath.row)
+              self.selectedName.remove(at: indexPath.row)
               self.selectedPrice.remove(at: indexPath.row)
               self.selectedCount.remove(at: indexPath.row)
               self.selectedImage.remove(at: indexPath.row)
-              
-              
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-              
-            
-             
-              
-          }
+              self.tableView.deleteRows(at: [indexPath], with: .automatic)
+              NotificationCenter.default.post(name: NSNotification.Name("newData"), object: nil)
+              }
         }
-    
-    
-    
-}
+    }
 

@@ -7,13 +7,13 @@
 
 import UIKit
 import Kingfisher
+import Lottie
 
 class DetailsViewController: UIViewController {
     
     var product : Products?
-    var count : Int = 1
-    
-    
+    var count : Double = 1
+    var animationView = AnimationView()
     
     @IBOutlet weak var addButtonClicked: UIButton!
     @IBOutlet weak var productImage: UIImageView!
@@ -22,16 +22,11 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var productDescription: UILabel!
     @IBOutlet weak var sumLabel: UILabel!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addButtonClicked.layer.cornerRadius = 20
-        
-        
-        
-        
-        
+        lottieInitialize()
         productName.text = product?.title
         
         
@@ -43,9 +38,6 @@ class DetailsViewController: UIViewController {
                            self.productImage.kf.setImage(with : url)
                        }
                    }
-        
-     
-
     }
     
     @IBAction func plusButton(_ sender: Any) {
@@ -53,10 +45,10 @@ class DetailsViewController: UIViewController {
                 {
                     count += 1
                 }
-                countLabel.text = "\(count)"
+                countLabel.text = "\(Int(count))"
                 
                 
-        let price = Int(product!.price)
+        let price = Double(product!.price)
         sumLabel.text = "\(price * count)"
         
         
@@ -68,33 +60,47 @@ class DetailsViewController: UIViewController {
                {
                    count -= 1
                }
-               countLabel.text = "\(count)"
-        let price = Int(product!.price)
+               countLabel.text = "\(Int(count))"
+        let price = Double(product!.price)
         sumLabel.text = "\(price * count)"
-        
-               
-             
-               
-                   
-               
-           
-    }
-    
-    
+        }
     
     @IBAction func addButtonClicked(_ sender: Any) {
+        lottieStart()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         let secondTab = (self.tabBarController?.viewControllers![1])! as! CartView
-        secondTab.selectedName.append(product!.title)
-        secondTab.selectedImage.append(product!.image)
-        secondTab.selectedCount.append(countLabel.text!)
-        secondTab.selectedPrice.append(sumLabel.text!)
+            secondTab.selectedName.append(self.product!.title)
+            secondTab.selectedImage.append(self.product!.image)
+            secondTab.selectedCount.append(self.countLabel.text!)
+            secondTab.selectedPrice.append(self.sumLabel.text!)
+            self.lottieStop()
         
-        
-        
-        
+        }
         
     }
 
-
+}
+extension DetailsViewController {
+    func lottieInitialize(){
+        animationView.isHidden = true
+        animationView.animation = Animation.named("addToCart" )
+        animationView.frame = view.bounds
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 3
+        animationView.backgroundColor = .white
+        
+        view.addSubview(animationView)
+    }
+    func lottieStart(){
+        animationView.isHidden = false
+        animationView.play()
+    }
+    
+    func lottieStop(){
+        animationView.isHidden = true
+        animationView.stop()
+    }
 
 }
+

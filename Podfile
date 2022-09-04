@@ -9,6 +9,7 @@ target 'e-commerceApp' do
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Kingfisher'
+  pod 'lottie-ios'
   
   # Pods for e-commerceApp
 
