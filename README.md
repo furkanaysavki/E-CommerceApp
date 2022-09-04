@@ -8,15 +8,20 @@ The application lists the data I got from the fakestoreapi using the UrlSession 
 - VIPER Pattern
 - Firebase Authentication
 - UrlSession
-- CollectionView, TableView
+- CollectionView, Compositional Layout
 - TabBarController
 - Kingfisher
+- Lottie
+
+
+
+
+https://user-images.githubusercontent.com/45628483/188332283-c92104c3-df3d-4f4f-8a31-5116706a22ab.mov
 
 
 
 
 
-https://user-images.githubusercontent.com/45628483/172064391-d957f28e-65c3-48ff-82e5-cbf098477753.mov
 
 
 
