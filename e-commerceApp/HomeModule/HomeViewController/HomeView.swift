@@ -36,6 +36,7 @@ class HomeView: UIViewController {
         configureCollectionView()
         activityIndicator.startAnimating()
         HomeRouter.createModule(ref: self)
+
     }
     
     
