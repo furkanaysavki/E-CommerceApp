@@ -10,33 +10,22 @@ import Foundation
 
 class HomeInteractor : PresenterToInteractorHomeProtocol {
    
-    
+  var homePresenter: InteractorToPresenterHomeProtocol?
    
-   
-    
-    var homePresenter: InteractorToPresenterHomeProtocol?
     func getAllProducts() {
         guard let url = URL(string: "https://fakestoreapi.com/products")
                 else {
                     return
                 }
-                
                 let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-                    
-                    
                     guard let data = data ,  error == nil else {
                         self?.homePresenter?.sendDataToPresenter(result: .failure(NetworkError.networkFailed))
                         return
                     }
-                    
                     do {
-                        
                         let products = try JSONDecoder().decode([Products].self, from : data )
-                        
                         self?.homePresenter?.sendDataToPresenter(result: .success(products))
-                        
-                     
-                    } catch {
+                        } catch {
                         self?.homePresenter?.sendDataToPresenter(result: .failure(NetworkError.parsingFailed))
                     }
                 }
