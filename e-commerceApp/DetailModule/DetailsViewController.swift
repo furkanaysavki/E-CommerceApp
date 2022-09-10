@@ -15,6 +15,7 @@ class DetailsViewController: UIViewController {
     var count : Double = 1
     var animationView = AnimationView()
     
+    
     @IBOutlet weak var addButtonClicked: UIButton!
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var countLabel: UILabel!
@@ -28,17 +29,22 @@ class DetailsViewController: UIViewController {
         addButtonClicked.layer.cornerRadius = 20
         lottieInitialize()
         productName.text = product?.title
-        
-        
         productDescription.text = product?.Description
         sumLabel.text = "\(product!.price)"
+  
+        
+        
+        
         if let url = URL(string : product!.image)
                    {
                        DispatchQueue.main.async {
                            self.productImage.kf.setImage(with : url)
                        }
                    }
+        
+        
     }
+    
     
     @IBAction func plusButton(_ sender: Any) {
         if count >= 1 && count < 10
@@ -74,6 +80,7 @@ class DetailsViewController: UIViewController {
             secondTab.selectedCount.append(self.countLabel.text!)
             secondTab.selectedPrice.append(self.sumLabel.text!)
             self.lottieStop()
+            NotificationCenter.default.post(name: NSNotification.Name("tabBarCount"), object: nil)
         
         }
         
