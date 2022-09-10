@@ -16,37 +16,43 @@ class CartView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var selectedCount = [String]()
     var selectedName =  [String]()
     var sum : Double = 0
+    
   
     
     @IBOutlet weak var myTotalPrice: UILabel!
-    
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        newCount()
         payButton.layer.cornerRadius = 20
         tableView.delegate = self
         tableView.dataSource = self
-        
-        
         
     }
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
         newAmount()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(newAmount), name: NSNotification.Name(rawValue : "newData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(newCount), name: NSNotification.Name(rawValue : "tabBarCount"), object: nil)
         
         }
+    
+    @objc func newCount() {
+       
+            self.tabBarController?.tabBar.items![1].badgeValue = ("\(selectedName.count)")
+
+    }
     
     @objc func newAmount(){
         let numbers = selectedPrice.map { Double($0)!}
         let sum = numbers.reduce(0, +)
         myTotalPrice.text = String(sum)
     }
-
-    
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedName.count
     }
@@ -77,6 +83,8 @@ class CartView: UIViewController, UITableViewDataSource, UITableViewDelegate {
               self.selectedImage.remove(at: indexPath.row)
               self.tableView.deleteRows(at: [indexPath], with: .automatic)
               NotificationCenter.default.post(name: NSNotification.Name("newData"), object: nil)
+              NotificationCenter.default.post(name: NSNotification.Name("tabBarCount"), object: nil)
+              
               }
         }
     }
