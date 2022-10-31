@@ -36,6 +36,5 @@ class HomeInteractor : PresenterToInteractorHomeProtocol {
                     }
                 }
                 task.resume()
-        
-}
+        }
 }
