@@ -32,18 +32,13 @@ class DetailsViewController: UIViewController {
         productDescription.text = product?.Description
         sumLabel.text = "\(product!.price)"
   
-        
-        
-        
         if let url = URL(string : product!.image)
                    {
                        DispatchQueue.main.async {
                            self.productImage.kf.setImage(with : url)
                        }
                    }
-        
-        
-    }
+         }
     
     
     @IBAction func plusButton(_ sender: Any) {
@@ -52,14 +47,9 @@ class DetailsViewController: UIViewController {
                     count += 1
                 }
                 countLabel.text = "\(Int(count))"
-                
-                
         let price = Double(product!.price)
         sumLabel.text = "\(price * count)"
-        
-        
-    }
-    
+         }
     
     @IBAction func minusButton(_ sender: Any) {
         if count > 1 && count < 10
@@ -83,9 +73,7 @@ class DetailsViewController: UIViewController {
             NotificationCenter.default.post(name: NSNotification.Name("tabBarCount"), object: nil)
         
         }
-        
-    }
-
+         }
 }
 extension DetailsViewController {
     func lottieInitialize(){
@@ -103,7 +91,6 @@ extension DetailsViewController {
         animationView.isHidden = false
         animationView.play()
     }
-    
     func lottieStop(){
         animationView.isHidden = true
         animationView.stop()
