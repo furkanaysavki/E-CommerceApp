@@ -7,25 +7,13 @@
 
 import Foundation
 
-
-
-
 class SignupRouter :  PresenterToRouterSignUpProtocol {
     
     static func createModule(ref : SignupView){
        
-        
-        
         ref.signUpPresenter = SignupPresenter()
         ref.signUpPresenter?.signUpInteractor = SignupInteractor()
      
-        
-  
-    
-    
-        
-        
+     }
     }
-    
-}
 
