@@ -44,9 +44,4 @@ class SignupView: UIViewController {
         self.performSegue(withIdentifier: "toLogin", sender: nil)
         
     }
-    
-        
-        
-        
-        
-    }
+     }
