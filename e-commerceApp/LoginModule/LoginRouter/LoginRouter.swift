@@ -9,23 +9,12 @@ import Foundation
 import UIKit
 
 
-
-
 class LoginRouter :  PresenterToRouterLoginProtocol {
     
     static func createModule(ref : LoginView){
        
-        
-        
         ref.loginPresenter = LoginPresenter()
         ref.loginPresenter?.LoginInteractor = LoginInteractor()
         
-        
-  
-    
-    
-        
-        
+        }
     }
-    
-}
