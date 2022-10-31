@@ -8,25 +8,15 @@
 import Foundation
 import UIKit
 
-
-
-
-
 class LoginPresenter : ViewToPresenterLoginProtocol {
     
     var LoginInteractor: PresenterToInteractorLoginProtocol?
     
    
     
-    
-    
-    
-   
-    
-    func clickLogin(email: String?, password: String?) {
+     func clickLogin(email: String?, password: String?) {
         
-       
-        LoginInteractor?.performLoginRequest(email: email!, password: password!)
+       LoginInteractor?.performLoginRequest(email: email!, password: password!)
 
             }
     
