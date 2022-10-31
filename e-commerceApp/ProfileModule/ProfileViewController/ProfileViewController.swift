@@ -23,10 +23,6 @@ class ProfileViewController: UIViewController {
         profilePresenter?.getInfo()
         }
     
-
-   
-    
-    
     @IBAction func logoutButton(_ sender: Any) {
         do {
                     try Auth.auth().signOut()
